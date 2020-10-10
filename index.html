@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awesome Quiz</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    
+    <!-- NAVBAR REPURPOSED FROM MY PORTFOLIO HOMEWORK -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+            <a class="navbar-brand" href="#">
+                <img src="images/pixel-me.jpg" width="30" height="30" class="rounded-circle mr-3" alt="logo">Sandy Bassi</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link active" href="index.html">Quiz<span class="sr-only">(current)</a>
+                    <a class="nav-item nav-link" href="#">About Me</a>
+                </div>
+            </div>
+        </nav>
+    </header>   
+
+    <!--CONTAINER FOR START GAME WHICH IS SHOWN BY DEFAULT style="display: block"-->
+    <div class="container" id="startContainer" style="display: block">
+        <div class="card px-5">
+            <div class="card-body text-center">
+                <h2 class="card-title cover-heading">Welcome to coders' paradise!</h2>
+                <p class="card-text lead">How great is your coding knowledge? Let's play and find out!</p>
+                <a href="#" id="startBtn" class="btn btn-primary">Start Quiz</a>
+            </div>
+        </div>
+    </div> 
+
+
+    
+    <!--CONTAINER FOR Q&AS WHICH IS HIDDEN BY DEFAULT style="display: none"--> 
+    <div class="container" id="questionContainer" style="display: none">
+        <h3 class="text-sm-right text-center pb-5">Timer: <span id="timerDisplayr"></span></h3>
+        <h2 id="question" class="text-center font-weight-normal mb-5"></h2>
+        <div class="buttons">  
+            <button type="button" class="btn btn-dark btn-lg btn-block" id="choice1">Block level button</button>
+            <button type="button" class="btn btn-secondary btn-lg btn-block" id="choice2">Block level button</button>   
+            <button type="button" class="btn btn-secondary btn-lg btn-block" id="choice3">Block level button</button>
+            <button type="button" class="btn btn-secondary btn-lg btn-block" id="choice4">Block level button</button>   
+        </div>  
+        <div class="mt-5">
+            <!--displayed dynamically-->
+            <h3 id="displayQuestionOutcome" class="text-center"></h3>
+        </div>
+    </div>
+
+    <!--CONTAINER FOR QUIZ SCORE WHICH IS HIDDEN BY DEFAULT-->
+    <div class="container gameOverContainer" id="gameOverContainer" style="display: none">
+        <div class="card px-5">
+            <div class="card-body text-center">
+                <h2 class="text-center pb-5">Game Over!</h2>
+                <h3 class="text-center pb-3">Your score is: <span id="scoreOuput"></span></h3>
+                <form class="form-inline mb-2 justify-content-center">
+                    <div class="form-group mt-3">
+                        <label for="userName">Save your score for next time!</label>
+                        <input type="text" class="form-control ml-4" id="userName" placeholder="enter nickname">
+                    </div>
+                </form>
+                <div class="text-center mt-5">
+                    <button id="saveScore" type="submit" class="btn btn-primary text-center">Save Score</button>
+                </div>  
+            </div>
+        </div>
+    </div>
+
+    <!--CONTAINER FOR VIEW HIGHSCORE WHICH IS HIDDEN BY DEFAULT-->
+
+
+
+     <!--script for quiz js file-->
+    <script src="quiz.js"></script>
+    <!-- JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>
+</html>
