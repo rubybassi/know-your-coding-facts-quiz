@@ -33,7 +33,6 @@ var questions = [
     let questionPage = document.getElementById('questionContainer');
     let gameOverPage = document.getElementById('gameOverContainer');
     let highScoresPage = document.getElementById(' highScoreContainer');
-
     
     let userScoreContainer = document.getElementById('scoreOuput');
     let questionEl = document.getElementById('question');
@@ -48,11 +47,6 @@ var questions = [
     let playerScore= 0;
     let correctLog = 0;
     let arrLength = questions.length;
-    
-
-    // -------------functions pending------------
-   // get score from local storage to display highscores
-    
     
 
     // startGame function uses event listener dynamically change page and display question and choices
@@ -80,17 +74,16 @@ var questions = [
     $("#choiceBtns button").on("click", (function(event) {
     let userGuess = $(this).text();
         if (userGuess === questions[currentQuestionIndex].answer) {
-        answeredCorrectly();
-        console.log("correct");
+            answeredCorrectly();
+            console.log("correct");
         }
         else {
-        answeredInCorrectly();
-        console.log("incorrect");
-        // deduct time from timer 
+            answeredInCorrectly();
+            console.log("incorrect");
         }   
 	}));
 
-    // checks if current question index is less than questions items and and add score 
+    // if answered was correct this checks if current question index is less than questions items and and add score 
     // and updates content, else loads gameOver
     function answeredCorrectly() {
         playerScore +=10;
@@ -101,13 +94,12 @@ var questions = [
          //   console.log("answered correctly")
             outcomeDisplay.style.color = "green";
             outcomeDisplay.textContent = "Awesome! You answered correctly. Progess:" + correctLog + "/" + arrLength;
-        }   else {
+        } 
+        else {
             setTimeout(loadGameOverPage, 500);
-
     }}
 
-
-    // answeredInCorrectly function checks if current question index is less than questions items 
+    // if answered was incorrect this checks if current question index is less than questions items 
     // and updates content, else loads gameOver
     function answeredInCorrectly() {
         currentQuestionIndex++;
@@ -117,7 +109,8 @@ var questions = [
           //  console.log("answered incorrectly")
             outcomeDisplay.style.color = "red";
             outcomeDisplay.textContent = "Oops! You answered incorrectly. Progess:" + correctLog + "/" + arrLength;
-        }   else {
+        }   
+        else {
             setTimeout(loadGameOverPage, 500); 
   
     }}
@@ -138,7 +131,8 @@ var questions = [
             if (timeLeft === 0 ) {
                 loadGameOverPage();
                 clearInterval(timeLeft)
-            }   else {
+            }  
+            else {
                 timer.innerHTML = timeLeft;
                 timeLeft--;
             }
@@ -149,7 +143,7 @@ var questions = [
     let playerName = document.getElementById('userName');
     const saveScoreBtn = document.getElementById('saveScore');
     
-    // get user value variable and set name and score to local storage
+    // gets player's name and score and sends to local storage
     saveScoreBtn.addEventListener('click',function(){
         event.preventDefault();
         const playerNameVal = document.getElementById('userName').value;
@@ -161,13 +155,15 @@ var questions = [
         localStorage.setItem("score", playerScore);
      })
     
-    // get user value variable and set name and score to local storage 
+    // fetches player's previous name and score from local storage 
     let lastScore = document.getElementById('lastScore');
     let lastScoreVal = localStorage.getItem('score');
-    lastScore.textContent = "You're previous score was: " + lastScoreVal;
-    // console.log(highscoreVal);
+        if (lastScoreVal !== "") {
+            lastScore.textContent = "You're previous score was: " + lastScoreVal;
+        }
     
-    // restart game 
+    
+    // replay game and reset
     const restartGameBtn = document.getElementById('playAgainBtn');
     restartGameBtn.addEventListener('click', function() {
         gameOverPage.style.display = 'none';
@@ -182,6 +178,6 @@ var questions = [
 
      // -------Bugs to address----------------
      // outcomeDisplay message is not updated on the last question
-     // timer does not reset on game replay - not sure how to set in countdown function
+     // timer does not reset on game replay and twitches - not sure how to set in countdown function
      // user key and value sent to local.storage when name field is empty
 
