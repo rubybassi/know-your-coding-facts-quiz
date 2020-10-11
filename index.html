@@ -6,6 +6,7 @@
     <title>Awesome Quiz</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
     
@@ -43,11 +44,11 @@
     <div class="container" id="questionContainer" style="display: none">
         <h3 class="text-sm-right text-center pb-5">Timer: <span id="timerDisplayr"></span></h3>
         <h2 id="question" class="text-center font-weight-normal mb-5"></h2>
-        <div class="buttons">  
-            <button type="button" class="btn btn-dark btn-lg btn-block" id="choice1">Block level button</button>
-            <button type="button" class="btn btn-secondary btn-lg btn-block" id="choice2">Block level button</button>   
-            <button type="button" class="btn btn-secondary btn-lg btn-block" id="choice3">Block level button</button>
-            <button type="button" class="btn btn-secondary btn-lg btn-block" id="choice4">Block level button</button>   
+        <div id="choiceBtns" class="buttons">  
+            <button type="button" class="btn btn-dark btn-lg btn-block choices" id="choice1"></button>
+            <button type="button" class="btn btn-secondary btn-lg btn-block choices" id="choice2"></button>   
+            <button type="button" class="btn btn-secondary btn-lg btn-block choices" id="choice3"></button>
+            <button type="button" class="btn btn-secondary btn-lg btn-block choices" id="choice4"></button>   
         </div>  
         <div class="mt-5">
             <!--displayed dynamically-->
