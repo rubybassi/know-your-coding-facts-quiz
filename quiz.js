@@ -45,7 +45,7 @@ var questions = [
     let userChoice4Btn = document.getElementById('choice4');
    
     let currentQuestionIndex = 0;
-    let userScore = 0;
+    let playerScore= 0;
     let correctLog = 0;
     let arrLength = questions.length;
     
@@ -93,7 +93,7 @@ var questions = [
     // checks if current question index is less than questions items and and add score 
     // and updates content, else loads gameOver
     function answeredCorrectly() {
-        userScore +=10;
+        playerScore +=10;
         correctLog++;
         currentQuestionIndex++;
         if (currentQuestionIndex < arrLength) {
@@ -126,7 +126,7 @@ var questions = [
     function loadGameOverPage(){ 
         questionPage.style.display = 'none'; //display game page
         gameOverPage.style.display = 'block';  //hide start page
-        userScoreContainer.textContent = userScore;
+        userScoreContainer.textContent = playerScore;
         clearInterval(timeLeft); // <-------------------------------------------NOT RESETTING FOR REPLAY?
     }
 
@@ -146,7 +146,7 @@ var questions = [
     }
 
     // reference variables
-    const playerName = document.getElementById('userName');
+    let playerName = document.getElementById('userName');
     const saveScoreBtn = document.getElementById('saveScore');
     
     // get user value variable and set name and score to local storage
@@ -158,12 +158,14 @@ var questions = [
             alert("name cannot be empty!");
         }
         localStorage.setItem("name", playerNameVal);
-        localStorage.setItem("score", userScore);
+        localStorage.setItem("score", playerScore);
      })
     
     // get user value variable and set name and score to local storage 
-    let highscore = localStorage.getItem('score');
-    console.log(highscore);
+    let lastScore = document.getElementById('lastScore');
+    let lastScoreVal = localStorage.getItem('score');
+    lastScore.textContent = "You're previous score was: " + lastScoreVal;
+    // console.log(highscoreVal);
     
     // restart game 
     const restartGameBtn = document.getElementById('playAgainBtn');
