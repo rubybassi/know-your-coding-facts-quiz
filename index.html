@@ -58,7 +58,7 @@
 
     <!--CONTAINER FOR QUIZ SCORE WHICH IS HIDDEN BY DEFAULT-->
     <div class="container gameOverContainer" id="gameOverContainer" style="display: none">
-        <div class="card px-5">
+        <div class="card px-md-5">
             <div class="card-body text-center">
                 <h2 class="text-center pb-5">Game Over!</h2>
                 <h3 class="text-center pb-3">Your score is: <span id="scoreOuput"></span></h3>
@@ -68,10 +68,10 @@
                         <input type="text" class="form-control ml-4" id="userName" placeholder="enter nickname" required>
                     </div>
                 </form>
-                <div class="text-center mt-5 mb-5 endGameBtns">
-                    <button id="saveScore" type="submit" class="btn btn-primary text-center">Save Score</button>
-                    <button id="playAgainBtn" type="submit" class="btn btn-primary text-center">Play Again</button>
-                    <a href="index.html" class="btn btn-primary home">Home</a>
+                <div class="text-center endGameBtns mt-5 mb-5">
+                    <button id="saveScore" type="submit" class="btn btn-primary text-center endGameBtns">Save Score</button>
+                    <button id="playAgainBtn" type="submit" class="btn btn-primary text-center endGameBtns">Play Again</button>
+                    <a href="index.html" class="btn btn-primary home endGameBtns">Home</a>
                 </div>
                 <h4 id="lastScore"></h4> 
                 </div>  
