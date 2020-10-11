@@ -32,6 +32,7 @@ var questions = [
     let startPage = document.getElementById('startContainer');
     let questionPage = document.getElementById('questionContainer');
     let gameOverPage = document.getElementById('gameOverContainer');
+    let highScoresPage = document.getElementById(' highScoreContainer');
 
     
     let userScoreContainer = document.getElementById('scoreOuput');
@@ -102,6 +103,7 @@ var questions = [
             outcomeDisplay.textContent = "Awesome! You answered correctly. Progess:" + correctLog + "/" + arrLength;
         }   else {
             setTimeout(loadGameOverPage, 500);
+
     }}
 
 
@@ -109,7 +111,7 @@ var questions = [
     // and updates content, else loads gameOver
     function answeredInCorrectly() {
         currentQuestionIndex++;
-        timeLeft-=10;
+        timeLeft-=5;
         if (currentQuestionIndex < arrLength) {
             showQuestion(currentQuestionIndex);
           //  console.log("answered incorrectly")
@@ -117,6 +119,7 @@ var questions = [
             outcomeDisplay.textContent = "Oops! You answered incorrectly. Progess:" + correctLog + "/" + arrLength;
         }   else {
             setTimeout(loadGameOverPage, 500); 
+  
     }}
 
     // switches to game over page with score displayed
@@ -124,6 +127,7 @@ var questions = [
         questionPage.style.display = 'none'; //display game page
         gameOverPage.style.display = 'block';  //hide start page
         userScoreContainer.textContent = userScore;
+        clearInterval(timeLeft); // <-------------------------------------------NOT RESETTING FOR REPLAY?
     }
 
     // setTimer function 
@@ -131,9 +135,9 @@ var questions = [
     let timer = document.getElementById('timerDisplay');
     function countDown() {
         setInterval(function() {
-            if (timeLeft <=0 ) {
+            if (timeLeft === 0 ) {
                 loadGameOverPage();
-                clearInterval(timeLeft = 0)
+                clearInterval(timeLeft)
             }   else {
                 timer.innerHTML = timeLeft;
                 timeLeft--;
@@ -150,20 +154,32 @@ var questions = [
         event.preventDefault();
         const playerNameVal = document.getElementById('userName').value;
         console.log("clicked the saved button");
-        if (playerNameVal === "") {
+        if (playerNameVal == "") {
             alert("name cannot be empty!");
         }
         localStorage.setItem("name", playerNameVal);
         localStorage.setItem("score", userScore);
      })
     
-     
     // get user value variable and set name and score to local storage 
     let highscore = localStorage.getItem('score');
     console.log(highscore);
     
+    // restart game 
+    const restartGameBtn = document.getElementById('playAgainBtn');
+    restartGameBtn.addEventListener('click', function() {
+        gameOverPage.style.display = 'none';
+      //  clearInterval(timeLeft);
+        // timeLeft = 0;
+        currentQuestionIndex = 0;
+        outcomeDisplay.textContent = "";
+        correctLog = 0;
+        startGame();
+     })
 
 
-
-     // not sure where to add event.preventDefault(); to stop user clicking after all quesitions
+     // -------Bugs to address----------------
+     // outcomeDisplay message is not updated on the last question
+     // timer does not reset on game replay - not sure how to set in countdown function
+     // user key and value sent to local.storage when name field is empty
 
