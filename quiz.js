@@ -46,15 +46,16 @@ var questions = [
     const saveScoreBtn = document.getElementById('saveScore');
     let currentQuestionIndex = 0;
     let userScore = 0;
+    let correctLog = 0;
+    let arrLength = questions.length;
 
     // -------------functions ------------
-    // answeredIncorrectly
     // setTimer
     // endGame
     
     
 
-    // startGame function
+    // startGame function uses event listener dynamically change page and display question and choices
     const startBtn = document.getElementById('startBtn');
     startBtn.addEventListener('click', startGame) 
     function startGame() {
@@ -67,7 +68,7 @@ var questions = [
 
     }
 
-    // ShowQuestions function sets questions and answers based on currentQuesitonIndex
+    // ShowQuestions function gets and sets questions and answers based on currentQuesitonIndex
     function showQuestion(q) {
        questionEl.innerHTML = questions[q].question;
        userChoice1Btn.textContent = questions[q].choices[0];
@@ -76,67 +77,60 @@ var questions = [
        userChoice4Btn.textContent = questions[q].choices[3];
     }
 
-        
-    
     // checkAnswers function checks user answer using jQuery and event delagation
         $("#choiceBtns button").on("click", (function(event) {
-	
 		let userGuess = $(this).text();
-		if (userGuess === questions[currentQuestionIndex].answer) {
-        //  userScore +=10;
-          answeredCorrectly();
-          console.log("correct");
-		//	clearInterval(clock);
-		//	answeredCorrectly;
-		}
-		else {
-         answeredInCorrectly();
-         console.log("incorrect");
-         // deduct time from timer
-		//	clearInterval(clock);
-        //	answeredIncorrectly;
-      
-        }
-        console.log(userScore)
-        
-       // showQuestion(currentQuestionIndex);
+		    if (userGuess === questions[currentQuestionIndex].answer) {
+            answeredCorrectly();
+            console.log("correct");
+            }
+            else {
+            answeredInCorrectly();
+            console.log("incorrect");
+            // deduct time from timer 
+            }
+           // console.log(userScore);
+           
 	}));
 
-    // checkAnswers function checks user answer using jQuery and event delagation
+    // answeredCorrectly function checks if current question index is less than questions items and and add score 
+    // and updates content, else loads gameOver
     function answeredCorrectly() {
         userScore +=10;
+        correctLog++;
         currentQuestionIndex++;
-        if (currentQuestionIndex < questions.length) {
+        if (currentQuestionIndex < arrLength) {
             showQuestion(currentQuestionIndex);
             console.log("answered correctly")
             outcomeDisplay.style.color = "green";
-            outcomeDisplay.textContent = "Awesome! You answered correctly!"
+            outcomeDisplay.textContent = "Awesome!You answered correctly! " + correctLog + "/" + arrLength;
     }   else {
-            setTimeout(myfunc, 2000);
+            setTimeout(loadGameOverPage, 2000);
          //   questionPage.style.display = 'none'; //display game page
          //   gameOverPage.style.display = 'block';  //hide start page
          //   userScoreContainer.textContent = userScore;
     }}
 
 
-    // checkAnswers function checks user answer using jQuery and event delagation
+    // answeredInCorrectly function checks if current question index is less than questions items 
+    // and updates content, else loads gameOver
     function answeredInCorrectly() {
         currentQuestionIndex++;
-        if (currentQuestionIndex < questions.length) {
+        if (currentQuestionIndex < arrLength) {
             showQuestion(currentQuestionIndex);
             console.log("answered incorrectly")
             outcomeDisplay.style.color = "red";
-            outcomeDisplay.textContent = "Oops! You answered incorrectly!"
+            outcomeDisplay.textContent = "Oops! You answered incorrectly!" + correctLog + "/" + arrLength;
     }   else {
-            setTimeout(myfunc, 2000);
+            setTimeout(loadGameOverPage, 2000);
            // questionPage.style.display = 'none'; //display game page
           //  gameOverPage.style.display = 'block';  //hide start page
           //  userScoreContainer.textContent = userScore;
     }}
 
-    function myfunc(){ 
+    // checkAnswers function checks user answer using jQuery and event delagation
+    function loadGameOverPage(){ 
         questionPage.style.display = 'none'; //display game page
         gameOverPage.style.display = 'block';  //hide start page
         userScoreContainer.textContent = userScore;
-    
     }
