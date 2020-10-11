@@ -4,9 +4,34 @@ body{
 }
 
 .container {
-    max-width: 600px;
-    margin-top: 200px;
+    margin-top: 30px;
 }
+
 .startContainerCard {
     padding: 100px 0;
+}
+
+#scoreOuput, #timerDisplay {
+    color:#635DB6;
+}
+
+#lastScore {
+    border: 2px solid #635DB6;
+    padding: 5px;
+}
+@media only screen and (min-width: 768px) {
+    .container {
+    max-width: 600px;
+    margin-top: 200px;
+    }
+  }
+  
+  @media only screen and (max-width: 468px) {
+    .endGameBtns {
+    margin: 10px;
+    }
+
+    h2, #displayQuestionOutcome {
+        font-size: 22px;
+    }
 }
