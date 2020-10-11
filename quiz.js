@@ -59,6 +59,7 @@ var questions = [
         currentQuestionIndex = 0;
         outcomeDisplay.textContent = "";
         correctLog = 0;
+        playerScore = 0;
         timeLeft = 60;
         showQuestion(currentQuestionIndex);
        // console.log(questions[currentQuestionIndex])
@@ -67,7 +68,6 @@ var questions = [
 
     // setTimer function 
     function countDown() {
-        console.log("countdown");
     let interval =  setInterval(function() {
             if (timeLeft <= 0 ) {
                 loadGameOverPage();
@@ -143,8 +143,6 @@ var questions = [
     }
 
 
-
-    // reference variables
     const saveScoreBtn = document.getElementById('saveScore');
     
     // gets player's name and score and sends to local storage
@@ -162,8 +160,9 @@ var questions = [
     // fetches player's previous name and score from local storage 
     let lastScore = document.getElementById('lastScore');
     let lastScoreVal = localStorage.getItem('score');
+    
     function getLastScore() {
-        if (lastScoreVal !== "") {
+        if (lastScoreVal !== null) {
             lastScore.textContent = "You're previous score was: " + lastScoreVal;
         }
     }
@@ -174,9 +173,4 @@ var questions = [
         startGame();
      });
 
-
-     // -------Bugs to address----------------
-     // outcomeDisplay message is not updated on the last question
-     // timer does not reset on game replay and twitches - not sure how to set in countdown function
-     // user key and value sent to local.storage when name field is empty
 
