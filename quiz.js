@@ -32,7 +32,6 @@ var questions = [
     let startPage = document.getElementById('startContainer');
     let questionPage = document.getElementById('questionContainer');
     let gameOverPage = document.getElementById('gameOverContainer');
-    let highScoresPage = document.getElementById(' highScoreContainer');
     
     let userScoreContainer = document.getElementById('scoreOuput');
     let questionEl = document.getElementById('question');
@@ -42,23 +41,43 @@ var questions = [
     let userChoice2Btn = document.getElementById('choice2');
     let userChoice3Btn = document.getElementById('choice3');
     let userChoice4Btn = document.getElementById('choice4');
+    let timer = document.getElementById('timerDisplay');
    
     let currentQuestionIndex = 0;
     let playerScore= 0;
     let correctLog = 0;
-    let arrLength = questions.length;
-    
+    let timeLeft = 60;
 
     // startGame function uses event listener dynamically change page and display question and choices
     const startBtn = document.getElementById('startBtn');
-    startBtn.addEventListener('click', startGame) 
+    startBtn.addEventListener('click', startGame); 
     function startGame() {
         // console.log('started');
         startPage.style.display = 'none'; 
         questionPage.style.display = 'block'; 
+        gameOverPage.style.display = 'none';
+        currentQuestionIndex = 0;
+        outcomeDisplay.textContent = "";
+        correctLog = 0;
+        timeLeft = 60;
         showQuestion(currentQuestionIndex);
        // console.log(questions[currentQuestionIndex])
         countDown();
+    }
+
+    // setTimer function 
+    function countDown() {
+        console.log("countdown");
+    let interval =  setInterval(function() {
+            if (timeLeft <= 0 ) {
+                loadGameOverPage();
+                clearInterval(interval);
+            }  
+            else {
+                timer.innerHTML = timeLeft;
+                timeLeft--;
+            }
+        },1000);
     }
 
     // Gets and sets questions & answers based on currentQuesitionIndex
@@ -89,14 +108,14 @@ var questions = [
         playerScore +=10;
         correctLog++;
         currentQuestionIndex++;
-        if (currentQuestionIndex < arrLength) {
+        if (currentQuestionIndex < questions.length) {
             showQuestion(currentQuestionIndex);
          //   console.log("answered correctly")
             outcomeDisplay.style.color = "green";
-            outcomeDisplay.textContent = "Awesome! You answered correctly. Progess:" + correctLog + "/" + arrLength;
+            outcomeDisplay.textContent = "Awesome! You answered correctly. Progess:" + correctLog + "/" + questions.length;
         } 
         else {
-            setTimeout(loadGameOverPage, 500);
+            timeLeft = 0;
     }}
 
     // if answered was incorrect this checks if current question index is less than questions items 
@@ -104,14 +123,14 @@ var questions = [
     function answeredInCorrectly() {
         currentQuestionIndex++;
         timeLeft-=5;
-        if (currentQuestionIndex < arrLength) {
+        if (currentQuestionIndex < questions.length) {
             showQuestion(currentQuestionIndex);
           //  console.log("answered incorrectly")
             outcomeDisplay.style.color = "red";
-            outcomeDisplay.textContent = "Oops! You answered incorrectly. Progess:" + correctLog + "/" + arrLength;
+            outcomeDisplay.textContent = "Oops! You answered incorrectly. Progess:" + correctLog + "/" + questions.length;
         }   
         else {
-            setTimeout(loadGameOverPage, 500); 
+            timeLeft = 0; 
   
     }}
 
@@ -120,27 +139,12 @@ var questions = [
         questionPage.style.display = 'none'; //display game page
         gameOverPage.style.display = 'block';  //hide start page
         userScoreContainer.textContent = playerScore;
-        clearInterval(timeLeft); // <-------------------------------------------NOT RESETTING FOR REPLAY?
+        getLastScore();
     }
 
-    // setTimer function 
-    let timeLeft = 60;
-    let timer = document.getElementById('timerDisplay');
-    function countDown() {
-        setInterval(function() {
-            if (timeLeft === 0 ) {
-                loadGameOverPage();
-                clearInterval(timeLeft)
-            }  
-            else {
-                timer.innerHTML = timeLeft;
-                timeLeft--;
-            }
-        },1000)
-    }
+
 
     // reference variables
-    let playerName = document.getElementById('userName');
     const saveScoreBtn = document.getElementById('saveScore');
     
     // gets player's name and score and sends to local storage
@@ -158,22 +162,17 @@ var questions = [
     // fetches player's previous name and score from local storage 
     let lastScore = document.getElementById('lastScore');
     let lastScoreVal = localStorage.getItem('score');
+    function getLastScore() {
         if (lastScoreVal !== "") {
             lastScore.textContent = "You're previous score was: " + lastScoreVal;
         }
-    
+    }
     
     // replay game and reset
     const restartGameBtn = document.getElementById('playAgainBtn');
     restartGameBtn.addEventListener('click', function() {
-        gameOverPage.style.display = 'none';
-      //  clearInterval(timeLeft);
-        // timeLeft = 0;
-        currentQuestionIndex = 0;
-        outcomeDisplay.textContent = "";
-        correctLog = 0;
         startGame();
-     })
+     });
 
 
      // -------Bugs to address----------------
