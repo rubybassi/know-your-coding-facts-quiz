@@ -35,7 +35,6 @@ var questions = [
 
     
     let userScoreContainer = document.getElementById('scoreOuput');
-    const userName = document.getElementById('userName');
     let questionEl = document.getElementById('question');
     let outcomeDisplay = document.getElementById('displayQuestionOutcome');
     
@@ -43,7 +42,7 @@ var questions = [
     let userChoice2Btn = document.getElementById('choice2');
     let userChoice3Btn = document.getElementById('choice3');
     let userChoice4Btn = document.getElementById('choice4');
-    const saveScoreBtn = document.getElementById('saveScore');
+   
     let currentQuestionIndex = 0;
     let userScore = 0;
     let correctLog = 0;
@@ -51,7 +50,6 @@ var questions = [
     
 
     // -------------functions pending------------
-   // get user inout and set score to local storage
    // get score from local storage to display highscores
     
     
@@ -60,16 +58,15 @@ var questions = [
     const startBtn = document.getElementById('startBtn');
     startBtn.addEventListener('click', startGame) 
     function startGame() {
-       // console.log('started');
-       startPage.style.display = 'none';  //hide start page
-       questionPage.style.display = 'block'; //display game page
-      // currentQuestionIndex = 0;
-       showQuestion(currentQuestionIndex);
-      // console.log(questions[currentQuestionIndex])
-       countDown();
+        // console.log('started');
+        startPage.style.display = 'none'; 
+        questionPage.style.display = 'block'; 
+        showQuestion(currentQuestionIndex);
+       // console.log(questions[currentQuestionIndex])
+        countDown();
     }
 
-    // ShowQuestions function gets and sets questions and answers based on currentQuesitonIndex
+    // Gets and sets questions & answers based on currentQuesitionIndex
     function showQuestion(q) {
        questionEl.innerHTML = questions[q].question;
        userChoice1Btn.textContent = questions[q].choices[0];
@@ -78,23 +75,21 @@ var questions = [
        userChoice4Btn.textContent = questions[q].choices[3];
     }
 
-    // checkAnswers function checks user answer using jQuery and event delagation
-        $("#choiceBtns button").on("click", (function(event) {
-		let userGuess = $(this).text();
-		    if (userGuess === questions[currentQuestionIndex].answer) {
-            answeredCorrectly();
-            console.log("correct");
-            }
-            else {
-            answeredInCorrectly();
-            console.log("incorrect");
-            // deduct time from timer 
-            }
-           // console.log(userScore);
-           
+    // Checks what button / answer the user chose using jQuery and event delagation
+    $("#choiceBtns button").on("click", (function(event) {
+    let userGuess = $(this).text();
+        if (userGuess === questions[currentQuestionIndex].answer) {
+        answeredCorrectly();
+        console.log("correct");
+        }
+        else {
+        answeredInCorrectly();
+        console.log("incorrect");
+        // deduct time from timer 
+        }   
 	}));
 
-    // answeredCorrectly function checks if current question index is less than questions items and and add score 
+    // checks if current question index is less than questions items and and add score 
     // and updates content, else loads gameOver
     function answeredCorrectly() {
         userScore +=10;
@@ -102,14 +97,11 @@ var questions = [
         currentQuestionIndex++;
         if (currentQuestionIndex < arrLength) {
             showQuestion(currentQuestionIndex);
-            console.log("answered correctly")
+         //   console.log("answered correctly")
             outcomeDisplay.style.color = "green";
-            outcomeDisplay.textContent = "Awesome!You answered correctly! " + correctLog + "/" + arrLength;
-    }   else {
-            setTimeout(loadGameOverPage, 2000);
-         //   questionPage.style.display = 'none'; //display game page
-         //   gameOverPage.style.display = 'block';  //hide start page
-         //   userScoreContainer.textContent = userScore;
+            outcomeDisplay.textContent = "Awesome! You answered correctly. Progess:" + correctLog + "/" + arrLength;
+        }   else {
+            setTimeout(loadGameOverPage, 500);
     }}
 
 
@@ -120,17 +112,14 @@ var questions = [
         timeLeft-=10;
         if (currentQuestionIndex < arrLength) {
             showQuestion(currentQuestionIndex);
-            console.log("answered incorrectly")
+          //  console.log("answered incorrectly")
             outcomeDisplay.style.color = "red";
-            outcomeDisplay.textContent = "Oops! You answered incorrectly!" + correctLog + "/" + arrLength;
-    }   else {
-            setTimeout(loadGameOverPage, 2000);
-           // questionPage.style.display = 'none'; //display game page
-          //  gameOverPage.style.display = 'block';  //hide start page
-          //  userScoreContainer.textContent = userScore;
+            outcomeDisplay.textContent = "Oops! You answered incorrectly. Progess:" + correctLog + "/" + arrLength;
+        }   else {
+            setTimeout(loadGameOverPage, 500); 
     }}
 
-    // checkAnswers function checks user answer using jQuery and event delagation
+    // switches to game over page with score displayed
     function loadGameOverPage(){ 
         questionPage.style.display = 'none'; //display game page
         gameOverPage.style.display = 'block';  //hide start page
@@ -145,9 +134,36 @@ var questions = [
             if (timeLeft <=0 ) {
                 loadGameOverPage();
                 clearInterval(timeLeft = 0)
+            }   else {
+                timer.innerHTML = timeLeft;
+                timeLeft--;
             }
-            timer.innerHTML = timeLeft;
-            timeLeft--;
         },1000)
-        return;
     }
+
+    // reference variables
+    const playerName = document.getElementById('userName');
+    const saveScoreBtn = document.getElementById('saveScore');
+    
+    // get user value variable and set name and score to local storage
+    saveScoreBtn.addEventListener('click',function(){
+        event.preventDefault();
+        const playerNameVal = document.getElementById('userName').value;
+        console.log("clicked the saved button");
+        if (playerNameVal === "") {
+            alert("name cannot be empty!");
+        }
+        localStorage.setItem("name", playerNameVal);
+        localStorage.setItem("score", userScore);
+     })
+    
+     
+    // get user value variable and set name and score to local storage 
+    let highscore = localStorage.getItem('score');
+    console.log(highscore);
+    
+
+
+
+     // not sure where to add event.preventDefault(); to stop user clicking after all quesitions
+
