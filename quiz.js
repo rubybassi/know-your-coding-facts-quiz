@@ -34,7 +34,7 @@ var questions = [
     let gameOverPage = document.getElementById('gameOverContainer');
 
     let timer = document.getElementById('timerDisplay');
-    let userScore = document.getElementById('scoreOut');
+    let userScoreContainer = document.getElementById('scoreOuput');
     const userName = document.getElementById('userName');
     let questionEl = document.getElementById('question');
     let outcomeDisplay = document.getElementById('displayQuestionOutcome');
@@ -45,13 +45,12 @@ var questions = [
     let userChoice4Btn = document.getElementById('choice4');
     const saveScoreBtn = document.getElementById('saveScore');
     let currentQuestionIndex = 0;
+    let userScore = 0;
 
     // -------------functions ------------
-    // answeredCorrectly
     // answeredIncorrectly
     // setTimer
     // endGame
-    // nextQuestion
     
     
 
@@ -79,12 +78,12 @@ var questions = [
 
         
     
-    // checkAnswers function checks answer using jQuery and event delagation
+    // checkAnswers function checks user answer using jQuery and event delagation
         $("#choiceBtns button").on("click", (function(event) {
 	
-		var userGuess = $(this).text();
+		let userGuess = $(this).text();
 		if (userGuess === questions[currentQuestionIndex].answer) {
-          userScore +=10;
+        //  userScore +=10;
           answeredCorrectly();
           console.log("correct");
 		//	clearInterval(clock);
@@ -99,15 +98,45 @@ var questions = [
       
         }
         console.log(userScore)
-        currentQuestionIndex++;
-        showQuestion(currentQuestionIndex);
+        
+       // showQuestion(currentQuestionIndex);
 	}));
 
+    // checkAnswers function checks user answer using jQuery and event delagation
     function answeredCorrectly() {
-        console.log("answered correctly")
-    }
+        userScore +=10;
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questions.length) {
+            showQuestion(currentQuestionIndex);
+            console.log("answered correctly")
+            outcomeDisplay.style.color = "green";
+            outcomeDisplay.textContent = "Awesome! You answered correctly!"
+    }   else {
+            setTimeout(myfunc, 2000);
+         //   questionPage.style.display = 'none'; //display game page
+         //   gameOverPage.style.display = 'block';  //hide start page
+         //   userScoreContainer.textContent = userScore;
+    }}
 
+
+    // checkAnswers function checks user answer using jQuery and event delagation
     function answeredInCorrectly() {
-        console.log("answered incorrectly")
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questions.length) {
+            showQuestion(currentQuestionIndex);
+            console.log("answered incorrectly")
+            outcomeDisplay.style.color = "red";
+            outcomeDisplay.textContent = "Oops! You answered incorrectly!"
+    }   else {
+            setTimeout(myfunc, 2000);
+           // questionPage.style.display = 'none'; //display game page
+          //  gameOverPage.style.display = 'block';  //hide start page
+          //  userScoreContainer.textContent = userScore;
+    }}
 
+    function myfunc(){ 
+        questionPage.style.display = 'none'; //display game page
+        gameOverPage.style.display = 'block';  //hide start page
+        userScoreContainer.textContent = userScore;
+    
     }
