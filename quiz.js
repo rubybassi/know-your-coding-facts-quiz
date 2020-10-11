@@ -33,7 +33,7 @@ var questions = [
     let questionPage = document.getElementById('questionContainer');
     let gameOverPage = document.getElementById('gameOverContainer');
 
-    let timer = document.getElementById('timerDisplay');
+    
     let userScoreContainer = document.getElementById('scoreOuput');
     const userName = document.getElementById('userName');
     let questionEl = document.getElementById('question');
@@ -48,9 +48,9 @@ var questions = [
     let userScore = 0;
     let correctLog = 0;
     let arrLength = questions.length;
+    
 
     // -------------functions ------------
-    // setTimer
     // endGame
     
     
@@ -65,7 +65,7 @@ var questions = [
       // currentQuestionIndex = 0;
        showQuestion(currentQuestionIndex);
       // console.log(questions[currentQuestionIndex])
-
+       countDown();
     }
 
     // ShowQuestions function gets and sets questions and answers based on currentQuesitonIndex
@@ -116,6 +116,7 @@ var questions = [
     // and updates content, else loads gameOver
     function answeredInCorrectly() {
         currentQuestionIndex++;
+        timeLeft-=10;
         if (currentQuestionIndex < arrLength) {
             showQuestion(currentQuestionIndex);
             console.log("answered incorrectly")
@@ -134,3 +135,19 @@ var questions = [
         gameOverPage.style.display = 'block';  //hide start page
         userScoreContainer.textContent = userScore;
     }
+
+    // setTimer function 
+    let timeLeft = 60;
+    let timer = document.getElementById('timerDisplay');
+    function countDown() {
+        setInterval(function() {
+            if (timeLeft <=0 ) {
+                loadGameOverPage();
+                clearInterval(timeLeft = 0)
+            }
+            timer.innerHTML = timeLeft;
+            timeLeft--;
+        },1000)
+    }
+
+    //need to endGame is timeLeft =0; 
