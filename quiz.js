@@ -50,8 +50,9 @@ var questions = [
     let arrLength = questions.length;
     
 
-    // -------------functions ------------
-    // endGame
+    // -------------functions pending------------
+   // get user inout and set score to local storage
+   // get score from local storage to display highscores
     
     
 
@@ -148,6 +149,5 @@ var questions = [
             timer.innerHTML = timeLeft;
             timeLeft--;
         },1000)
+        return;
     }
-
-    //need to endGame is timeLeft =0; 
