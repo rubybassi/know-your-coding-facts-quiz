@@ -44,18 +44,20 @@ var questions = [
     let userChoice3Btn = document.getElementById('choice3');
     let userChoice4Btn = document.getElementById('choice4');
     const saveScoreBtn = document.getElementById('saveScore');
-    let currentQuestionIndex = 2;
+    let currentQuestionIndex = 0;
 
     // -------------functions ------------
-    // startGame
+    // answeredCorrectly
+    // answeredIncorrectly
     // setTimer
     // endGame
-    // ShowQuestions
-    // checkAnswers
+    // nextQuestion
+    
+    
 
+    // startGame function
     const startBtn = document.getElementById('startBtn');
     startBtn.addEventListener('click', startGame) 
-    
     function startGame() {
        // console.log('started');
        startPage.style.display = 'none';  //hide start page
@@ -66,8 +68,7 @@ var questions = [
 
     }
 
-
-    // sets questions and answers based on currentQuesitonIndex
+    // ShowQuestions function sets questions and answers based on currentQuesitonIndex
     function showQuestion(q) {
        questionEl.innerHTML = questions[q].question;
        userChoice1Btn.textContent = questions[q].choices[0];
@@ -78,18 +79,35 @@ var questions = [
 
         
     
-    // checks answer using jQuery and event delagation
+    // checkAnswers function checks answer using jQuery and event delagation
         $("#choiceBtns button").on("click", (function(event) {
 	
 		var userGuess = $(this).text();
 		if (userGuess === questions[currentQuestionIndex].answer) {
-            console.log("correct")
+          userScore +=10;
+          answeredCorrectly();
+          console.log("correct");
 		//	clearInterval(clock);
-		//	userWin();
+		//	answeredCorrectly;
 		}
 		else {
-            console.log("incorrect")
+         answeredInCorrectly();
+         console.log("incorrect");
+         // deduct time from timer
 		//	clearInterval(clock);
-		//	userLoss();
-		}
+        //	answeredIncorrectly;
+      
+        }
+        console.log(userScore)
+        currentQuestionIndex++;
+        showQuestion(currentQuestionIndex);
 	}));
+
+    function answeredCorrectly() {
+        console.log("answered correctly")
+    }
+
+    function answeredInCorrectly() {
+        console.log("answered incorrectly")
+
+    }
