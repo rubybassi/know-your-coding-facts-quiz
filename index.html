@@ -30,7 +30,7 @@
     <!--CONTAINER FOR START GAME WHICH IS SHOWN BY DEFAULT style="display: block"-->
     <div class="container" id="startContainer" style="display: block">
         <div class="card px-5">
-            <div class="card-body text-center">
+            <div class="card-body startContainerCard text-center">
                 <h2 class="card-title cover-heading">How great is your coding knowledge?</h2>
                 <p class="card-text lead">Let's play and find out!</p>
                 <a href="#" id="startBtn" class="btn btn-primary">Start Quiz</a>
@@ -57,7 +57,7 @@
     </div>
 
     <!--CONTAINER FOR QUIZ SCORE WHICH IS HIDDEN BY DEFAULT-->
-    <div class="container gameOverContainer" id="gameOverContainer" style="display: block">
+    <div class="container gameOverContainer" id="gameOverContainer" style="display: none">
         <div class="card px-5">
             <div class="card-body text-center">
                 <h2 class="text-center pb-5">Game Over!</h2>
@@ -68,18 +68,12 @@
                         <input type="text" class="form-control ml-4" id="userName" placeholder="enter nickname" required>
                     </div>
                 </form>
-                <div class="text-center mt-5">
+                <div class="text-center mt-5 mb-5 endGameBtns">
                     <button id="saveScore" type="submit" class="btn btn-primary text-center">Save Score</button>
                     <button id="playAgainBtn" type="submit" class="btn btn-primary text-center">Play Again</button>
                     <a href="index.html" class="btn btn-primary home">Home</a>
                 </div>
-                <div id="highScores">
-                    <h3></h3>
-                    <ul>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
+                <h4 id="lastScore"></h4> 
                 </div>  
             </div>
         </div>
