@@ -21,7 +21,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-item nav-link active" href="index.html">Quiz<span class="sr-only">(current)</a>
-                    <a class="nav-item nav-link" href="#">About Me</a>
+                    <a class="nav-item nav-link" href="https://rubybassi.github.io/pretty-cool-responsive-portfolio/">About Me</a>
                 </div>
             </div>
         </nav>
@@ -31,8 +31,8 @@
     <div class="container" id="startContainer" style="display: block">
         <div class="card px-5">
             <div class="card-body text-center">
-                <h2 class="card-title cover-heading">Welcome to coders' paradise!</h2>
-                <p class="card-text lead">How great is your coding knowledge? Let's play and find out!</p>
+                <h2 class="card-title cover-heading">How great is your coding knowledge?</h2>
+                <p class="card-text lead">Let's play and find out!</p>
                 <a href="#" id="startBtn" class="btn btn-primary">Start Quiz</a>
             </div>
         </div>
@@ -57,7 +57,7 @@
     </div>
 
     <!--CONTAINER FOR QUIZ SCORE WHICH IS HIDDEN BY DEFAULT-->
-    <div class="container gameOverContainer" id="gameOverContainer" style="display: none">
+    <div class="container gameOverContainer" id="gameOverContainer" style="display: block">
         <div class="card px-5">
             <div class="card-body text-center">
                 <h2 class="text-center pb-5">Game Over!</h2>
@@ -65,18 +65,37 @@
                 <form class="form-inline mb-2 justify-content-center">
                     <div class="form-group mt-3">
                         <label for="userName">Save your score for next time!</label>
-                        <input type="text" class="form-control ml-4" id="userName" placeholder="enter nickname">
+                        <input type="text" class="form-control ml-4" id="userName" placeholder="enter nickname" required>
                     </div>
                 </form>
                 <div class="text-center mt-5">
                     <button id="saveScore" type="submit" class="btn btn-primary text-center">Save Score</button>
+                    <button id="playAgainBtn" type="submit" class="btn btn-primary text-center">Play Again</button>
+                    <a href="index.html" class="btn btn-primary home">Home</a>
+                </div>
+                <div id="highScores">
+                    <h3></h3>
+                    <ul>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
                 </div>  
             </div>
         </div>
     </div>
 
-    <!--CONTAINER FOR VIEW HIGHSCORE WHICH IS HIDDEN BY DEFAULT-->
-
+    <!--CONTAINER FOR VIEW HIGHSCORE WHICH IS HIDDEN BY DEFAULT
+    <div class="container" id="highScoreContainer" style="display: none">
+        <div class="card px-5">
+            <div class="card-body text-center">
+                <h2 class="card-title cover-heading">High Score</h2>
+                <p id="highScores" class="card-text lead">List of high scores...</p>
+                <a href="index.html" class="btn btn-primary home">Home</a>
+            </div>
+        </div>
+    </div>
+    --> 
 
 
      <!--script for quiz js file-->
