@@ -6,3 +6,11 @@ body{
     max-width: 600px;
     margin-top: 200px;
 }
+
+div#highScores ul {
+    list-style-type: none;
+}
+
+div#highScores {
+    padding-top: 30px;
+}
