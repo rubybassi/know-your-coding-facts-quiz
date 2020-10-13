@@ -159,12 +159,12 @@ var questions = [
     
     // fetches player's previous name and score from local storage 
     let lastScore = document.getElementById('lastScore');
-    let lastScoreVal = localStorage.getItem('score');
+    
     
     function getLastScore() {
+    let lastScoreVal = localStorage.getItem('score');
         if (lastScoreVal !== null) {
             lastScore.textContent = "You're previous score was: " + lastScoreVal;
-            console.log(lastScoreVal)
         }
     }
     
