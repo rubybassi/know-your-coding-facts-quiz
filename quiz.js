@@ -164,6 +164,7 @@ var questions = [
     function getLastScore() {
         if (lastScoreVal !== null) {
             lastScore.textContent = "You're previous score was: " + lastScoreVal;
+            console.log(lastScoreVal)
         }
     }
     
