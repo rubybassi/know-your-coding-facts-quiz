@@ -26,6 +26,24 @@ var questions = [
         "A very useful tool used during development and debugging for printing content to the debugger is:",
       choices: ["JavaScript", "terminal / bash", "for loops", "console.log"],
       answer: "console.log"
+    },
+    {
+      question:
+        "How would you access the second element in an array?:",
+      choices: ["nums[2]", "nums[1]","nums.1", "nums_1"],
+      answer: "nums[1]"
+    },
+    {
+      question:
+        "Which is not a JavaScript Framework?:",
+      choices: ["Python Script", "JQuery","Django", "NodeJS"],
+      answer: "Django"
+    },
+    {
+      question:
+        "Which is used for Connect To Database:",
+      choices: ["PHP", "HTML", "JS", "All"],
+      answer: "PHP"
     }
   ];
 
