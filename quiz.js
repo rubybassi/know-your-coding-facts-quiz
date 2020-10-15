@@ -130,7 +130,7 @@ var questions = [
             showQuestion(currentQuestionIndex);
          //   console.log("answered correctly")
             outcomeDisplay.style.color = "green";
-            outcomeDisplay.textContent = "Awesome! You answered correctly. Progess:" + correctLog + "/" + questions.length;
+            outcomeDisplay.textContent = "Awesome! You answered correctly. Progess: " + correctLog + "/" + questions.length;
         } 
         else {
             timeLeft = 0;
@@ -145,7 +145,7 @@ var questions = [
             showQuestion(currentQuestionIndex);
           //  console.log("answered incorrectly")
             outcomeDisplay.style.color = "red";
-            outcomeDisplay.textContent = "Oops! You answered incorrectly. Progess:" + correctLog + "/" + questions.length;
+            outcomeDisplay.textContent = "Oops! You answered incorrectly. Progess: " + correctLog + "/" + questions.length;
         }   
         else {
             timeLeft = 0; 
@@ -182,7 +182,7 @@ var questions = [
     function getLastScore() {
     let lastScoreVal = localStorage.getItem('score');
         if (lastScoreVal !== null) {
-            lastScore.textContent = "You're previous score was: " + lastScoreVal;
+            lastScore.textContent = "Your previous score was: " + lastScoreVal;
         }
     }
     
