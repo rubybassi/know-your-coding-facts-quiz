@@ -8,6 +8,10 @@ This project is my attempt of creating a short quiz application which stores and
 
 [View my final project on GitHub pages](https://rubybassi.github.io/know-your-coding-facts-quiz/)
 
+![End Game Mock Up](assets/images/quiz-game.png)
+
+![Untitled_ Oct 19, 2020 12_37 AM](https://user-images.githubusercontent.com/25780327/96388890-fdc7c000-11a3-11eb-8858-fa7e3260b9fe.gif)
+
 If you have feedback, please feel free to drop me a comment.
 
 ### User Story
